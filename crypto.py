@@ -126,8 +126,8 @@ def strategy(pair, qty):
     ask_price = float(price['askPrice'])
     bid_price = float(price['bidPrice'])
     target = float(df.Predictions.iloc[-1])
-    per_buy =  (target-ask_price)/ask_price * lev
-    per_sell = (target-bid_price)/bid_price * lev
+    per_buy =  (target-ask_price)/ask_price
+    per_sell = (target-bid_price)/bid_price
     print('buy_change is '+ str(per_buy))
     print('sell_change is ' + str(per_sell))
 
