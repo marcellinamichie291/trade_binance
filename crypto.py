@@ -53,8 +53,8 @@ class ML():
 
 
 
-api_key = '4314GINvPNROw7IFtu4rO24z3jY5DnAXL8UMyko2eNw0YXT9r6DuAZtlDgqnlstt'
-api_secret = 'DZti3rtFGNkvuY58NEn1uqKFYoyjofL4LYlzoPUAEEI7tqAVCaHimvT8grpfTMKp'
+api_key = 'your_api_key'
+api_secret = 'your_api_secret'
 client = Client(api_key, api_secret, testnet=False)
 
 
