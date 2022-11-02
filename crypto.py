@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-import websocket, config, json, time, datetime, sys, re, os
+import websocket, json, time, datetime, sys, re, os
+import math
 import pandas as pd
 from binance.client import Client
 from binance.enums import *
@@ -103,7 +104,7 @@ class Signals():
         self.df['Buy'] = np.where(self.df['Predictions'] > self.df['Close'] , 1, 0 )
         self.df['Sell'] = np.where(self.df['Predictions'] < self.df['Close'] , -1, 0 )
         
-import math
+        
 def trun_n_d(n,d):
     dp = repr(n).find('.') #dot position
     if dp == -1:  
