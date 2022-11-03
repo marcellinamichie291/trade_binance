@@ -138,7 +138,7 @@ def strategy(pair, qty):
         tf1 = int(re.findall('\d+', tframe)[0])
         tme_frame = 60 * tf1
     
-    if per_buy >= 0.05 and df.Buy.iloc[-1]:
+    if per_buy >= 0.01 and df.Buy.iloc[-1]:
         #check position if already exist
         SYMBOL_POS = 'BTCUSDT'
         check_if_in_position = client.futures_position_information()
@@ -214,7 +214,7 @@ def strategy(pair, qty):
                     
 
                     
-    if per_sell <= -0.1 and df.Sell.iloc[-1]:
+    if per_sell <= -0.01 and df.Sell.iloc[-1]:
             check_if_in_position = client.futures_position_information()
             d_pos = pd.DataFrame(check_if_in_position)
             pos = (d_pos.loc[d_pos['symbol'] == 'BTCUSDT'])
