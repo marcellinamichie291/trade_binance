@@ -2,7 +2,6 @@
 # coding: utf-8
 
 import websocket, json, time, datetime, sys, re, os
-import math
 import pandas as pd
 from binance.client import Client
 from binance.enums import *
@@ -29,6 +28,7 @@ import pandas as pd
 from binance.client import Client
 import time
 import os
+import math
 lev = 50
 
 
@@ -104,7 +104,7 @@ class Signals():
         self.df['Buy'] = np.where(self.df['Predictions'] > self.df['Close'] , 1, 0 )
         self.df['Sell'] = np.where(self.df['Predictions'] < self.df['Close'] , -1, 0 )
         
-        
+import math
 def trun_n_d(n,d):
     dp = repr(n).find('.') #dot position
     if dp == -1:  
@@ -127,7 +127,7 @@ def strategy(pair, qty):
     bid_price = float(price['bidPrice'])
     target = float(df.Predictions.iloc[-1])
     per_buy =  (target-ask_price)/ask_price
-    per_sell = (target-bid_price)/bid_price
+    per_sell = (target-bid_price)/bid_price 
     print('buy_change is '+ str(per_buy))
     print('sell_change is ' + str(per_sell))
 
@@ -148,6 +148,8 @@ def strategy(pair, qty):
 
         #if not in position will proceed to buy
         if position_amount == 0:
+            print("cancelling all previous sl or tp orders before opening new position")
+            cancel_orders = client.futures_cancel_all_open_orders(symbol = pair)
             print('position already does not exit, so executing order')
             entry_price = float(ask_price)
             print("Entry Price at: {}".format(entry_price))
@@ -221,6 +223,8 @@ def strategy(pair, qty):
             position_amount = float(pos['positionAmt'])
                 
             if float(position_amount) == 0:
+                print("cancelling all previous sl or tp orders before opening new position")
+                cancel_orders = client.futures_cancel_all_open_orders(symbol = pair)
                 print('SELL SIGNAL IS ON! Executing order')
                 entry_price = float(bid_price)
                 print("Entry Price at: {}".format(entry_price))
@@ -232,7 +236,7 @@ def strategy(pair, qty):
                 exposure = pos_size / account_bal 
                 percentt = (0.03/exposure) + 1 
                 stop_losss = percentt * entry_price
-                stop_loss = trun_n_d(stop_loss,2)
+                stop_loss = trun_n_d(stop_losss,2)
 
                 print("Calculated stop loss at: {}".format(stop_loss))
 
