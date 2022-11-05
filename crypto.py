@@ -115,7 +115,7 @@ def trun_n_d(n,d):
 
 
 def strategy(pair, qty):
-    tframe = '5m' #for timeout
+    tframe = '1h' #for timeout
     #make the bot sleep if the tp or sl hits 
     time.sleep(600) #for 10 mins
     df = gethourlydata('BTCUSDT', '1h', '3days')
